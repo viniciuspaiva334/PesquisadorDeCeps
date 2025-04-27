@@ -1,4 +1,5 @@
 package HttpRequisition;
+import ArquivosCep.CepFile;
 import TratamentoDados.GsonData;
 import com.google.gson.Gson;
 import tratamentoApi.ViaCep;
@@ -32,8 +33,10 @@ public class RequisitionHttp {
         HttpResponse <String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
         //System.out.println(response.body());
 
-        GsonData tratamentoData = new GsonData(response.body());
+
+        GsonData tratamentoData = new GsonData( response );
         System.out.println("Dados do cep " +tratamentoData.getBodyGson());
+        CepFile novoArquivo = new CepFile(tratamentoData);
 
     }
 
